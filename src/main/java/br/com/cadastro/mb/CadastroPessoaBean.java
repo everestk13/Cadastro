@@ -12,7 +12,7 @@ import br.com.cadastro.service.PessoaService;
 
 @Named
 @RequestScoped
-public class CaddastroPessoaBean implements Serializable {
+public class CadastroPessoaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Inject
@@ -22,7 +22,7 @@ public class CaddastroPessoaBean implements Serializable {
 	@Inject
 	Endereco endereco;
 
-	public CaddastroPessoaBean() {
+	public CadastroPessoaBean() {
 
 	}
 	
