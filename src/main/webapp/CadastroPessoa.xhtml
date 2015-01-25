@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="/Layout.xhtml">
+	<ui:define name="centro">
+
+		<h:form>
+			<p:panel id="cadastro" header="Cadastro de Contribuintes">
+				<p:focus context="cadastro" />
+				
+				<p:fieldset legend="Dados Pessoais" >
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel for="nome" value="Nome:" />
+					<p:inputText id="nome" size="35" styleClass="largura"
+						placeholder="Informe seu nome" />
+
+					<p:outputLabel for="cpf" value="CPF:" />
+					<p:inputMask id="cpf" mask="99.999.999-99" size="15"
+						styleClass="largura" placeholder="Informe seu CPF" />
+
+					<p:outputLabel for="fone" value="Fone:" />
+					<p:inputMask id="fone" mask="(99) 9999-9999" size="15" placeholder="Telefone"
+						styleClass="largura" />
+
+					<p:outputLabel for="email" value="Email:" />
+					<p:inputText id="email" size="45" styleClass="largura"
+						placeholder="Informe seu Email" />
+
+
+				</h:panelGrid>
+				
+					</p:fieldset>
+				
+				 <br />
+				 <p:commandButton value="Salvar"/>
+				  <p:commandButton value="Limpar" type="reset"/>
+				  
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+</ui:decorate>
+</html>
