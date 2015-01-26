@@ -5,41 +5,88 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
+<h:head>
+	<script>
+	PrimeFaces.locales['pt'] = {
+		    closeText: 'Fechar',
+		    prevText: 'Anterior',
+		    nextText: 'Próximo',
+		    currentText: 'Começo',
+		    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
+		    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+		    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+		    dayNamesMin: ['D','S','T','Q','Q','S','S'],
+		    weekHeader: 'Semana',
+		    firstDay: 0,
+		    isRTL: false,
+		    showMonthAfterYear: false,
+		    yearSuffix: '',
+		    timeOnlyTitle: 'Só Horas',
+		    timeText: 'Tempo',
+		    hourText: 'Hora',
+		    minuteText: 'Minuto',
+		    secondText: 'Segundo',
+		    ampm: false,
+		    month: 'Mês',
+		    week: 'Semana',
+		    day: 'Dia',
+		    allDayText : 'Todo o Dia'
+		};
+
+	</script>
+
+
+</h:head>
+
 <ui:decorate template="/Layout.xhtml">
 	<ui:define name="centro">
 
 		<h:form>
 			<p:panel id="cadastro" header="Cadastro de Contribuintes">
 				<p:focus context="cadastro" />
-				
-				<p:fieldset legend="Dados Pessoais" >
-				<h:panelGrid columns="2" cellpadding="5">
 
-					<p:outputLabel for="nome" value="Nome:" />
-					<p:inputText id="nome" size="35" styleClass="largura"
-						placeholder="Informe seu nome" />
+				<p:fieldset legend="Dados Pessoais">
+					<h:panelGrid columns="2" cellpadding="5">
 
-					<p:outputLabel for="cpf" value="CPF:" />
-					<p:inputMask id="cpf" mask="99.999.999-99" size="15"
-						styleClass="largura" placeholder="Informe seu CPF" />
+						<p:outputLabel for="nome" value="Nome:" />
+						<p:inputText id="nome" size="35" styleClass="largura"
+							placeholder="Informe seu nome" />
 
-					<p:outputLabel for="fone" value="Fone:" />
-					<p:inputMask id="fone" mask="(99) 9999-9999" size="15" placeholder="Telefone"
-						styleClass="largura" />
+						<p:outputLabel for="cpf" value="CPF:" />
+						<p:inputMask id="cpf" mask="99.999.999-99" size="15"
+							styleClass="largura" placeholder="Informe seu CPF" />
 
-					<p:outputLabel for="email" value="Email:" />
-					<p:inputText id="email" size="45" styleClass="largura"
-						placeholder="Informe seu Email" />
+						<p:outputLabel for="fone" value="Fone:" />
+						<p:inputMask id="fone" mask="(99) 9999-9999" size="15"
+							placeholder="Telefone" styleClass="largura" />
+
+						<p:outputLabel for="email" value="Email:" />
+						<p:inputText id="email" size="45" styleClass="largura"
+							placeholder="Informe seu Email" />
+
+						<p:outputLabel for="nascimento" value="Data de Nascimento:" />
+						<p:calendar id="nascimento"
+							value="#{cadastroPessoaBean.pessoa.nascimento}"
+							styleClass="largura" size="20" readonlyInput="true"
+							pattern="dd/MM/yyyy" effect="fold" locale="pt" navigator="true" />
+
+						<p:outputLabel for="estadocivil" value="Estado Civil:" />
+						<p:selectOneRadio id="estadocivil"  value="#{cadastroPessoaBean.pessoa.tipoPessoa}">
+						   <f:selectItems  value="#{cadastroPessoaBean.tipoPessoas}" var="tipocivil" itemLabel="#{tipocivil.tipo}" itemValue="#{tipocivil}"/>
+						
+						</p:selectOneRadio>
 
 
-				</h:panelGrid>
-				
-					</p:fieldset>
-				
-				 <br />
-				 <p:commandButton value="Salvar"/>
-				  <p:commandButton value="Limpar" type="reset"/>
-				  
+
+					</h:panelGrid>
+
+				</p:fieldset>
+
+				<br />
+				<p:commandButton value="Salvar" />
+				<p:commandButton value="Limpar" type="reset" />
+
 			</p:panel>
 
 		</h:form>
