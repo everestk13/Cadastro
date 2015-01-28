@@ -43,48 +43,66 @@
 	<ui:define name="centro">
 
 		<h:form>
+	
+		
 			<p:panel id="cadastro" header="Cadastro de Contribuintes">
 				<p:focus context="cadastro" />
 
-				<p:fieldset legend="Dados Pessoais">
-					<h:panelGrid columns="2" cellpadding="5">
+				<p:fieldset >
+					<h:panelGrid columns="2" cellpadding="2" style="width:100%" columnClasses="rotulo,campo">
 
 						<p:outputLabel for="nome" value="Nome:" />
-						<p:inputText id="nome" size="35" styleClass="largura"
+						<p:inputText id="nome" size="35" styleClass="largura" value="#{cadastroPessoaBean.pessoa.nome}"
 							placeholder="Informe seu nome" />
 
 						<p:outputLabel for="cpf" value="CPF:" />
-						<p:inputMask id="cpf" mask="99.999.999-99" size="15"
+						<p:inputMask id="cpf" mask="99.999.999-99" size="14" value="#{cadastroPessoaBean.pessoa.cpf}"
 							styleClass="largura" placeholder="Informe seu CPF" />
 
-						<p:outputLabel for="fone" value="Fone:" />
-						<p:inputMask id="fone" mask="(99) 9999-9999" size="15"
-							placeholder="Telefone" styleClass="largura" />
+						<p:outputLabel for="fone" value="Contato:" />
+						<p:inputMask id="fone" mask="(99) 9999-9999" size="14" value="#{cadastroPessoaBean.pessoa.telefone}"
+							placeholder="Contato" styleClass="largura" />
 
 						<p:outputLabel for="email" value="Email:" />
-						<p:inputText id="email" size="45" styleClass="largura"
+						<p:inputText id="email" size="30" styleClass="largura" value="#{cadastroPessoaBean.pessoa.email}"
 							placeholder="Informe seu Email" />
 
-						<p:outputLabel for="nascimento" value="Data de Nascimento:" />
+						<p:outputLabel for="nascimento" value="Data Nascimento:" />
 						<p:calendar id="nascimento"
-							value="#{cadastroPessoaBean.pessoa.nascimento}"
-							styleClass="largura" size="20" readonlyInput="true"
-							pattern="dd/MM/yyyy" effect="fold" locale="pt" navigator="true" />
+							value="#{cadastroPessoaBean.pessoa.nascimento}" size="20"
+							readonlyInput="true" pattern="dd/MM/yyyy" effect="fold"
+							locale="pt" navigator="true" />
 
 						<p:outputLabel for="estadocivil" value="Estado Civil:" />
-						<p:selectOneRadio id="estadocivil"  value="#{cadastroPessoaBean.pessoa.tipoPessoa}">
-						   <f:selectItems  value="#{cadastroPessoaBean.tipoPessoas}" var="tipocivil" itemLabel="#{tipocivil.tipo}" itemValue="#{tipocivil}"/>
-						
+						<p:selectOneRadio id="estadocivil"
+							value="#{cadastroPessoaBean.pessoa.tipoPessoa}">
+							<f:selectItems value="#{cadastroPessoaBean.tipoPessoas}"
+								var="tipocivil" itemLabel="#{tipocivil.tipo}"
+								itemValue="#{tipocivil}" />
+
+						</p:selectOneRadio>
+
+						<p:outputLabel for="sexo" value="Sexo:" />
+						<p:selectOneRadio id="sexo"
+							value="#{cadastroPessoaBean.pessoa.sexo}">
+							<f:selectItems value="#{cadastroPessoaBean.sexo}" var="tiposexo"
+								itemLabel="#{tiposexo}" itemValue="#{tiposexo}" />
+
 						</p:selectOneRadio>
 
 
 
 					</h:panelGrid>
 
+
+
 				</p:fieldset>
 
 				<br />
-				<p:commandButton value="Salvar" />
+
+				
+				<br />
+				<p:commandButton value="Salvar" id="salvar" actionListener="#{cadastroPessoaBean.salvar()}"  />
 				<p:commandButton value="Limpar" type="reset" />
 
 			</p:panel>

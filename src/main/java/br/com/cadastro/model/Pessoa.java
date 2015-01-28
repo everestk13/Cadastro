@@ -41,9 +41,7 @@ public class Pessoa implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private TipoPessoa tipoPessoa;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "endereco_id")
-	private Endereco endereco;
+	
 	
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
@@ -123,8 +121,6 @@ public class Pessoa implements Serializable {
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result
-				+ ((endereco == null) ? 0 : endereco.hashCode());
-		result = prime * result
 				+ ((nascimento == null) ? 0 : nascimento.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
@@ -156,11 +152,6 @@ public class Pessoa implements Serializable {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (endereco == null) {
-			if (other.endereco != null)
-				return false;
-		} else if (!endereco.equals(other.endereco))
-			return false;
 		if (nascimento == null) {
 			if (other.nascimento != null)
 				return false;
@@ -183,12 +174,6 @@ public class Pessoa implements Serializable {
 		return true;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+	
 
 }

@@ -1,8 +1,13 @@
 package br.com.cadastro.repository;
 
+import java.io.Serializable;
+
+import javax.ejb.Stateless;
+
 import br.com.cadastro.model.Pessoa;
 
-public class PessoaRepository extends BasicRepository<Pessoa> {
+@Stateless
+public class PessoaRepository extends BasicRepository<Pessoa> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
