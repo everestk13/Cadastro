@@ -7,40 +7,37 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import br.com.cadastro.model.Endereco;
+import br.com.cadastro.model.EstadoCivil;
 import br.com.cadastro.model.Pessoa;
-import br.com.cadastro.model.Sexo;
-import br.com.cadastro.model.TipoPessoa;
+import br.com.cadastro.model.TipoSexo;
+import br.com.cadastro.model.Uf;
 import br.com.cadastro.service.PessoaService;
 
 @Named
 @RequestScoped
-public class CadastroPessoaBean extends BasicBean implements Serializable {
+public class CadastroPessoaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Inject
 	PessoaService service;
 	@Inject
 	private Pessoa pessoa;
-
-	
+	@Inject
+	private Endereco endereco;
 	@SuppressWarnings("unused")
-	private List<TipoPessoa>tipoPessoas;
+	private List<EstadoCivil>estadoCivil;
 	@SuppressWarnings("unused")
-	private List<Sexo> sexo;
+	private List<TipoSexo>tipoSexo;
+	@SuppressWarnings("unused")
+	private List<Uf>Ufs;
+	
 
-	
-	
-
-	public CadastroPessoaBean() {
-
-		
-	}
-	
-	
 	public void salvar(){
 		
 	
-	
+	service.addPessoaService(pessoa);
 	
 		
 		
@@ -57,25 +54,48 @@ public class CadastroPessoaBean extends BasicBean implements Serializable {
 	}
 
 
-
-	public List<TipoPessoa> getTipoPessoas() {
-		
-		return Arrays.asList(TipoPessoa.values());
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
 
-	public void setTipoPessoas(List<TipoPessoa> tipoPessoas) {
-		this.tipoPessoas = tipoPessoas;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 
-	public List<Sexo> getSexo() {
-		return Arrays.asList(Sexo.values());
+	public List<EstadoCivil> getEstadoCivil() {
+		return Arrays.asList(EstadoCivil.values());
 	}
 
-	public void setSexo(List<Sexo> sexo) {
-		this.sexo = sexo;
+
+	public void setEstadoCivil(List<EstadoCivil> estadoCivil) {
+		this.estadoCivil = estadoCivil;
 	}
+
+
+	public List<TipoSexo> getTipoSexo() {
+		return Arrays.asList(TipoSexo.values());
+	}
+
+
+	public void setTipoSexo(List<TipoSexo> tipoSexo) {
+		this.tipoSexo = tipoSexo;
+	}
+
+
+	public List<Uf> getUfs() {
+		return Arrays.asList(Uf.values());
+	}
+
+
+	public void setUfs(List<Uf> ufs) {
+		Ufs = ufs;
+	}
+
+
+
+	
 
 
 

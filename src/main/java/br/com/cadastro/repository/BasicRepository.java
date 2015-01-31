@@ -1,20 +1,16 @@
 package br.com.cadastro.repository;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
+
 
 public abstract class BasicRepository<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private final Class<T> classe;
+	private  Class<T> classe;
 
 	@PersistenceContext
 	private EntityManager manager;
@@ -25,19 +21,7 @@ public abstract class BasicRepository<T> implements Serializable {
 
 	}
 
-	protected Session getSession() {
-
-		Session session = manager.unwrap(Session.class);
-
-		return session;
-
-	}
-
-	protected Criteria createCriteria() {
-		Criteria criteria = getSession().createCriteria(classe);
-		return criteria;
-
-	}
+	
 
 	protected void addEntity(T entity) {
 
@@ -51,15 +35,6 @@ public abstract class BasicRepository<T> implements Serializable {
 
 	}
 
-	@SuppressWarnings("unchecked")
-	protected List<T> listEntity() {
-		List<T> lista = new ArrayList<T>();
-		Criteria criteria = createCriteria();
-		lista = criteria.list();
-
-		return lista;
-
-	}
 
 	protected void updateEntity(T entity) {
 

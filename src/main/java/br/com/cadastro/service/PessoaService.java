@@ -15,11 +15,6 @@ public class PessoaService implements Serializable {
 	
 	
 	
-	public PessoaService() {
-		
-	}
-	
-	
 	public void addPessoaService(Pessoa pessoa){
 		
 		repository.addPessoa(pessoa);

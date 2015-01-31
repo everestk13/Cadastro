@@ -29,19 +29,9 @@
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>4.3.8.Final</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.8.Final</version>
-			<scope>compile</scope>
+			<version>4.3.0.Final</version>
 		</dependency>
-
 
 		<!-- Bibliotecas JavaEE 7 que já estão no Servidor, incluindo o JSF 2.2 -->
 		<dependency>

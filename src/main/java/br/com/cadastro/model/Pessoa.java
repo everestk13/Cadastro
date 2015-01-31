@@ -23,7 +23,8 @@ public class Pessoa implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long codigo;
+	@Column(name="id")
+	private Integer codigo;
 
 	@Column(nullable = false, length = 100)
 	private String nome;
@@ -38,22 +39,44 @@ public class Pessoa implements Serializable {
 	@Column(length = 20, nullable = false)
 	private String telefone;
 
-	@Enumerated(EnumType.STRING)
-	private TipoPessoa tipoPessoa;
-
-	
-	
-	@Enumerated(EnumType.STRING)
-	private Sexo sexo;
 	
 	@Column(length=90,nullable=false,unique=true)
 	private String email;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(length=20)
+	private TipoSexo sexo;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(length=20)
+	private EstadoCivil estadoCivil;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
+	
 
-	public long getCodigo() {
+	public TipoSexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(TipoSexo sexo) {
+		this.sexo = sexo;
+	}
+
+	public EstadoCivil getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(EstadoCivil estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(long codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
@@ -89,21 +112,7 @@ public class Pessoa implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public TipoPessoa getTipoPessoa() {
-		return tipoPessoa;
-	}
 
-	public void setTipoPessoa(TipoPessoa tipoPessoa) {
-		this.tipoPessoa = tipoPessoa;
-	}
-
-	public Sexo getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(Sexo sexo) {
-		this.sexo = sexo;
-	}
 
 	public String getEmail() {
 		return email;
@@ -117,17 +126,7 @@ public class Pessoa implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (codigo ^ (codigo >>> 32));
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result
-				+ ((nascimento == null) ? 0 : nascimento.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
-		result = prime * result
-				+ ((telefone == null) ? 0 : telefone.hashCode());
-		result = prime * result
-				+ ((tipoPessoa == null) ? 0 : tipoPessoa.hashCode());
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
 
@@ -140,39 +139,23 @@ public class Pessoa implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Pessoa other = (Pessoa) obj;
-		if (codigo != other.codigo)
-			return false;
-		if (cpf == null) {
-			if (other.cpf != null)
+		if (codigo == null) {
+			if (other.codigo != null)
 				return false;
-		} else if (!cpf.equals(other.cpf))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (nascimento == null) {
-			if (other.nascimento != null)
-				return false;
-		} else if (!nascimento.equals(other.nascimento))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (sexo != other.sexo)
-			return false;
-		if (telefone == null) {
-			if (other.telefone != null)
-				return false;
-		} else if (!telefone.equals(other.telefone))
-			return false;
-		if (tipoPessoa != other.tipoPessoa)
+		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
 	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+
 
 	
 
