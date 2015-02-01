@@ -43,8 +43,9 @@
 	<ui:define name="centro">
 
 		<h:form>
-
-
+       
+        <p:growl id="growl" autoUpdate="true" />  
+            
 			<p:panel id="cadastro" header="Cadastro de Contribuintes">
 				<p:focus context="cadastro" />
 
@@ -59,11 +60,11 @@
 
 						<p:outputLabel for="cpf" value="CPF:" />
 						<p:inputMask id="cpf" mask="999.999.999-99" size="14"
-							value="#{cadastroPessoaBean.pessoa.cpf}" styleClass="largura"
+							value="#{cadastroPessoaBean.pessoa.cpf}" styleClass="largura" converter="convertMask"
 							placeholder="Informe seu CPF" />
 
 						<p:outputLabel for="fone" value="Contato:" />
-						<p:inputMask id="fone" mask="(99)9999-9999" size="14"
+						<p:inputMask id="fone" mask="(99)9999-9999" size="14" converter="convertMask"
 							value="#{cadastroPessoaBean.pessoa.telefone}"
 							placeholder="Contato" styleClass="largura" />
 
@@ -108,11 +109,11 @@
 						columnClasses="rotulo,campo">
 
 						<p:outputLabel for="bairro" value="Bairro:" />
-						<p:inputText id="bairro" size="25" styleClass="largura"
+						<p:inputText id="bairro" value="#{cadastroPessoaBean.endereco.bairro}" size="25" styleClass="largura"
 							placeholder="Informe seu bairro" />
 
 						<p:outputLabel for="cidade" value="Cidade:" />
-						<p:inputText id="cidade" size="25" styleClass="largura"
+						<p:inputText id="cidade" value="#{cadastroPessoaBean.endereco.cidade}" size="25" styleClass="largura"
 							placeholder="Informe sua cidade" />
 
 
@@ -124,13 +125,13 @@
 						</p:selectOneMenu>
 
 						<p:outputLabel for="logradouro" value="Logradouro:" />
-						<p:inputText id="logradouro" size="40" placeholder="Rua,Avenida"  styleClass="largura"/>
+						<p:inputText id="logradouro" value="#{cadastroPessoaBean.endereco.logradouro}" size="40" placeholder="Rua,Avenida"  styleClass="largura"/>
 						
 						<p:outputLabel for="cep" value="CEP:" />
-						<p:inputText id="cep" size="10" placeholder="CEP"  styleClass="largura"/>
+						<p:inputText id="cep" value="#{cadastroPessoaBean.endereco.cep}" size="10" placeholder="CEP"  styleClass="largura"/>
 						
 						<p:outputLabel for="numero" value="Número:" />
-						<p:inputText id="numero" size="8"   styleClass="largura"/>
+						<p:inputText id="numero"  value="#{cadastroPessoaBean.endereco.numero}" size="8"   styleClass="largura"/>
 
 					</h:panelGrid>
 

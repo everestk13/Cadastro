@@ -17,7 +17,7 @@ import br.com.cadastro.service.PessoaService;
 
 @Named
 @RequestScoped
-public class CadastroPessoaBean implements Serializable {
+public class CadastroPessoaBean extends BasicBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Inject
@@ -33,16 +33,28 @@ public class CadastroPessoaBean implements Serializable {
 	@SuppressWarnings("unused")
 	private List<Uf>Ufs;
 	
+	
+	
 
-	public void salvar(){
+	public void salvar() throws InstantiationException, IllegalAccessException{
 		
-	
+	this.pessoa.setEndereco(endereco);
+	this.endereco.setPessoa(pessoa);
 	service.addPessoaService(pessoa);
-	
-		
+	limparCampos();
+     
+	info("Contribuinte cadastrado com sucesso.");
 		
 	}
-
+	
+	public void limparCampos(){
+		
+		this.pessoa = new Pessoa();
+		this.endereco = new Endereco();
+		
+	}
+	
+	
 
 	public Pessoa getPessoa() {
 		return pessoa;
