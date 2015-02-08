@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.ejb.Stateless;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.cadastro.model.Filtro;
@@ -28,14 +29,15 @@ public class PessoaRepository extends BasicRepository<Pessoa> implements
 
 	}
 
-	public Pessoa consultaPessoa(Filtro filtro) {
+	public Pessoa validarPessoa(Filtro filtro) {
 
 		Pessoa pessoa = null;
 		Criteria criteria = createCriteria();
+		criteria.setFetchMode("endereco",FetchMode.JOIN);
 		if (filtro.getCpf() != null) {
 			criteria.add(Restrictions.eq("cpf", filtro.getCpf()));
 		}
-		if (filtro.getEmail() != null) {
+		else if (filtro.getEmail() != null) {
 
 			criteria.add(Restrictions.eq("email", filtro.getEmail()));
 

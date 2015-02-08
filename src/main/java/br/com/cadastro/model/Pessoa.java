@@ -15,6 +15,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CPF;
+
 
 @Entity
 public class Pessoa implements Serializable {
@@ -27,31 +35,41 @@ public class Pessoa implements Serializable {
 	private Integer codigo;
 
 	@Column(nullable = false, length = 100)
+    @NotEmpty
 	private String nome;
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
+	@Past
+	@NotNull
 	private Date nascimento;
 
 	@Column(length = 20, nullable = false, unique = true)
+	@NotEmpty
+	@CPF
 	private String cpf;
 
 	@Column(length = 20, nullable = false)
+	@NotEmpty
 	private String telefone;
 
 	
 	@Column(length=90,nullable=false,unique=true)
+	@Email
+	@NotEmpty
 	private String email;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(length=20)
+	@NotNull
 	private TipoSexo sexo;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length=20)
+	@NotNull
 	private EstadoCivil estadoCivil;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 	

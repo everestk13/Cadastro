@@ -13,6 +13,8 @@ public class PessoaService implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private PessoaRepository repository;
+	@Inject
+    private Filtro filtro;
 
 	public void addPessoaService(Pessoa pessoa) {
 
@@ -20,9 +22,21 @@ public class PessoaService implements Serializable {
 
 	}
 
-	public Pessoa PessoaFiltroService(Filtro filtro) {
+	public Pessoa validarPessoaService(Pessoa pessoaParam) {
 
-		Pessoa pessoa = repository.consultaPessoa(filtro);
+		Pessoa pessoa = null;
+		if (pessoaParam.getCpf() != null && !pessoaParam.getCpf().isEmpty()) {
+
+			filtro.setCpf(pessoaParam.getCpf());
+
+		}
+		if (pessoaParam.getEmail() != null && !pessoaParam.getEmail().isEmpty()) {
+
+			filtro.setEmail(pessoaParam.getEmail());
+
+		}
+
+		pessoa = repository.validarPessoa(filtro);
 
 		return pessoa;
 

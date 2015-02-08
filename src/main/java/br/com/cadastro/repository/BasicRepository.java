@@ -16,7 +16,7 @@ public abstract class BasicRepository<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private  Class<T> classe;
+	private final  Class<T> classe;
 
 	@PersistenceContext
 	private EntityManager manager;

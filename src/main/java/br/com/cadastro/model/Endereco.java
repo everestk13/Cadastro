@@ -11,6 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Endereco implements Serializable {
@@ -27,30 +31,33 @@ public class Endereco implements Serializable {
 	private int codigo;
 	
 	@Column(length=90,nullable=false)
+	@NotEmpty
 	private String bairro;
 	
 	@Column(length=90,nullable= false)
+	@NotEmpty
 	private String cidade;
 	
 	@Column(length=10,nullable=false)
 	@Enumerated(EnumType.STRING)
+	@NotNull
 	private Uf uf;
 	
 	@Column(length=100,nullable=false)
+	@NotEmpty
 	private String logradouro;
 	
 	@Column(nullable=false)
+	@NotNull
     private int numero;
 	
 	@Column(length=20,nullable=false)
+	@CEP
     private String cep;
 	
 	@OneToOne(cascade=CascadeType.ALL,mappedBy="endereco")
 	private Pessoa pessoa;
     
-	
-	
-	
 	
 	public Uf getUf() {
 		return uf;
