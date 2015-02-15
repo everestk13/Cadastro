@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
-@Pattern(regexp = "/^[0-9]{2}.[0-9]{3}-[0-9]{3}$/")
+@Pattern(regexp = "[0-9]{8}")
 public @interface CEP {
 	
 	@OverridesAttribute(constraint = Pattern.class, name = "message")

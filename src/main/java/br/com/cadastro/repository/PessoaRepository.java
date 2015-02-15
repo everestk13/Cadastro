@@ -1,6 +1,7 @@
 package br.com.cadastro.repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.Stateless;
 
@@ -27,6 +28,15 @@ public class PessoaRepository extends BasicRepository<Pessoa> implements
 
 		addEntity(pessoa);
 
+	}
+	
+	public List<Pessoa>listPessoa(){
+		
+		return listEntity();
+		
+		//return manager.createQuery("from Pessoa p join fetch p.endereco", Pessoa.class).getResultList();
+		
+		
 	}
 
 	public Pessoa validarPessoa(Filtro filtro) {

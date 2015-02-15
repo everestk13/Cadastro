@@ -1,6 +1,7 @@
 package br.com.cadastro.service;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -21,6 +22,14 @@ public class PessoaService implements Serializable {
 		repository.addPessoa(pessoa);
 
 	}
+	
+	public List<Pessoa>listPessoaService(){
+		return repository.listPessoa();
+		
+		
+	}
+	
+	
 
 	public Pessoa validarPessoaService(Pessoa pessoaParam) {
 

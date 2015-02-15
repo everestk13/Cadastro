@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 
 
@@ -19,7 +20,7 @@ public abstract class BasicRepository<T> implements Serializable {
 	private final  Class<T> classe;
 
 	@PersistenceContext
-	private EntityManager manager;
+	public EntityManager manager;
 
 	public BasicRepository(Class<T> classe) {
 
@@ -40,10 +41,12 @@ public abstract class BasicRepository<T> implements Serializable {
 			
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked" })
 	protected List<T>listEntity(){
 		List<T>lista = new ArrayList<T>();
 		Criteria criteria = createCriteria();
+		criteria.setFetchMode("endereco",FetchMode.JOIN);
+		//criteria.setResultTransformer(criteria.DISTINCT_ROOT_ENTITY);
 		lista = criteria.list();
 		return lista;
 		
