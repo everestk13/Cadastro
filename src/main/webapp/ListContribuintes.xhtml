@@ -15,6 +15,8 @@
 
 	<h:form id="form">
 		<p:dataTable var="pessoas" value="#{listPessoaBean.pessoas}" rows="5"
+			selectionMode="single" selection="#{listPessoaBean.pessoaSelect}"
+			rowKey="#{pessoas.codigo}"
 			style="font-size:12px;font-family:font-family: Arial, Helvetica, sans-serif"
 			paginator="true" id="contribuinteTable">
 			<f:facet name="header">
@@ -41,7 +43,10 @@
 				</h:outputText>
 			</p:column>
 			<p:column style="width:10%;text-align: center">
-				<p:commandButton icon="ui-icon-pencil">
+				<p:commandButton icon="ui-icon-pencil"
+					action="#{listPessoaBean.selecionar()}">
+					<f:setPropertyActionListener value="#{pessoas}"
+						target="#{listPessoaBean.pessoaSelect}" />
 				</p:commandButton>
 				<p:commandButton update=":form:Detail"
 					oncomplete="PF('pessoaDialog').show()" icon="ui-icon-search"
@@ -52,6 +57,12 @@
 			</p:column>
 
 		</p:dataTable>
+
+		<p:blockUI block="contribuinteTable" trigger="contribuinteTable">
+        Carregando<br />
+			<p:graphicImage library="image" name="ajax.gif" />
+		</p:blockUI>
+
 		<p:dialog header="Contribuinte" widgetVar="pessoaDialog"
 			appendToBody="true" closable="true" modal="true" showEffect="fade"
 			hideEffect="fade" resizable="false">
@@ -69,27 +80,43 @@
 
 					<h:outputText value="CPF:" />
 					<h:outputText value="#{listPessoaBean.pessoaSelect.cpf}" />
-					
-					
+
+
 					<h:outputText value="Nascimento:" />
 					<h:outputText value="#{listPessoaBean.pessoaSelect.nascimento}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText >  
-					
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+
 					<h:outputText value="Email:" />
 					<h:outputText value="#{listPessoaBean.pessoaSelect.email}" />
-                 
-                    <h:outputText value="Sexo:" />
-                    <h:outputText value="#{listPessoaBean.pessoaSelect.sexo}" />
 
-                     <h:outputText value="Estado Civil" />
-                     <h:outputText value="#{listPessoaBean.pessoaSelect.estadoCivil}" />
-                     
-                     <h:outputText value="Bairro:" />
-                     <h:outputText value="#{listPessoaBean.pessoaSelect.endereco.bairro}" />
-                       
-                      <h:outputText value="Cidade:" />
-                      <h:outputText value="#{listPessoaBean.pessoaSelect.endereco.cidade}" />                      
+					<h:outputText value="Fone" />
+					<h:outputText value="#{listPessoaBean.pessoaSelect.telefone}" />
+
+					<h:outputText value="Sexo:" />
+					<h:outputText value="#{listPessoaBean.pessoaSelect.sexo}" />
+
+					<h:outputText value="Estado Civil" />
+					<h:outputText value="#{listPessoaBean.pessoaSelect.estadoCivil}" />
+
+					<h:outputText value="Bairro:" />
+					<h:outputText
+						value="#{listPessoaBean.pessoaSelect.endereco.bairro}" />
+
+					<h:outputText value="Cidade:" />
+					<h:outputText
+						value="#{listPessoaBean.pessoaSelect.endereco.cidade}" />
+
+					<h:outputText value="Estado:" />
+					<h:outputText value="#{listPessoaBean.pessoaSelect.endereco.uf}" />
+
+					<h:outputText value="Número:" />
+					<h:outputText
+						value="#{listPessoaBean.pessoaSelect.endereco.numero}" />
+
+					<h:outputText value="Logradouro:" />
+					<h:outputText
+						value="#{listPessoaBean.pessoaSelect.endereco.logradouro}" />
 				</p:panelGrid>
 			</p:outputPanel>
 		</p:dialog>

@@ -60,7 +60,7 @@ public abstract class BasicRepository<T> implements Serializable {
 
 	}
 
-	protected T entity(long id) {
+	protected T entity(int id) {
 
 		return manager.find(classe, id);
 

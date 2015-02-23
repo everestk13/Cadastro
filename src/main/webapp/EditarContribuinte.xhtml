@@ -41,11 +41,11 @@
 </h:head>
 
 <h:body>
-	<h:form id="form">
+	<h:form>
 
-		<p:panel id="panel" header="Cadastro de Contribuintes" footer="Sistema de Controle e Cadastro Contribuintes.">
+		<p:panel id="cadastro" header="Editar Cadastro de Contribuinte" footer="Sistema de Controle e Cadastro Contribuintes.">
 			<p:messages id="msgs" autoUpdate="true" closable="true" />
-			<p:focus context="panel" />
+			<p:focus context="cadastro" />
 
 			<p:fieldset>
 				<h:panelGrid columns="2" cellpadding="2" style="width:100%"
@@ -53,15 +53,14 @@
 
 					<p:outputLabel for="nome" value="Nome:" />
 					<p:inputText id="nome" size="35" styleClass="largura"
-						value="#{cadastroPessoaBean.pessoa.nome}"
+						value="#{listPessoaBean.pessoaAlterar.nome}"
 						placeholder="Informe seu nome" />
 
 					<p:outputLabel for="cpf" value="CPF:" />
-					<p:inputMask id="cpf" mask="999.999.999-99" size="14"
-						value="#{cadastroPessoaBean.pessoa.cpf}" styleClass="largura"
+					<p:inputMask id="cpf" mask="999.999.999-99" size="14" readonly="true"
+						value="#{listPessoaBean.pessoaAlterar.cpf}" styleClass="largura"
 						converter="convertMask" placeholder="Informe seu CPF">
-						<p:ajax event="blur" listener="#{cadastroPessoaBean.validarCpf()}"
-							process="@this" />
+					
 					</p:inputMask>
 
 
@@ -70,15 +69,14 @@
 					<p:outputLabel for="fone" value="Contato:" />
 					<p:inputMask id="fone" mask="(99)9999-9999" size="14"
 						converter="convertMask"
-						value="#{cadastroPessoaBean.pessoa.telefone}"
+						value="#{listPessoaBean.pessoaAlterar.telefone}"
 						placeholder="Contato" styleClass="largura" />
 
 					<p:outputLabel for="email" value="Email:" />
-					<p:inputText id="email" size="30" styleClass="largura"
-						value="#{cadastroPessoaBean.pessoa.email}"
+					<p:inputText id="email" size="30" styleClass="largura" readonly="true"
+						value="#{listPessoaBean.pessoaAlterar.email}"
 						placeholder="Informe seu Email">
-						<p:ajax event="blur"
-							listener="#{cadastroPessoaBean.validarEmail()}" process="@this" />
+					
 					</p:inputText>
 
 
@@ -87,21 +85,21 @@
 
 					<p:outputLabel for="nascimento" value="Data Nascimento:" />
 					<p:calendar id="nascimento"
-						value="#{cadastroPessoaBean.pessoa.nascimento}" size="20"
+						value="#{listPessoaBean.pessoaAlterar.nascimento}" size="20"
 						readonlyInput="true" pattern="dd/MM/yyyy" effect="fold"
 						locale="pt" navigator="true" />
 
 					<p:outputLabel for="estadocivil" value="Estado Civil:" />
 					<p:selectOneRadio id="estadocivil"
-						value="#{cadastroPessoaBean.pessoa.estadoCivil}">
-						<f:selectItems value="#{cadastroPessoaBean.estadoCivil}"
+						value="#{listPessoaBean.pessoaAlterar.estadoCivil}">
+						<f:selectItems value="#{listPessoaBean.estadoCivil}"
 							var="civil" itemLabel="#{civil.valor}" itemValue="#{civil}" />
 					</p:selectOneRadio>
 
 					<p:outputLabel for="tiposexo" value="Sexo:" />
 					<p:selectOneRadio id="tiposexo"
-						value="#{cadastroPessoaBean.pessoa.sexo}">
-						<f:selectItems value="#{cadastroPessoaBean.tipoSexo}" var="sexo"
+						value="#{listPessoaBean.pessoaAlterar.sexo}">
+						<f:selectItems value="#{listPessoaBean.tipoSexo}" var="sexo"
 							itemLabel="#{sexo}" itemValue="#{sexo}" />
 					</p:selectOneRadio>
 
@@ -110,54 +108,56 @@
 			</p:fieldset>
 
 			<br />
-
 			<p:fieldset>
 				<h:panelGrid columns="2" cellpadding="2" style="width:100%"
 					columnClasses="rotulo,campo">
 
 					<p:outputLabel for="bairro" value="Bairro:" />
 					<p:inputText id="bairro"
-						value="#{cadastroPessoaBean.endereco.bairro}" size="25"
+						value="#{listPessoaBean.pessoaAlterar.endereco.bairro}" size="25"
 						styleClass="largura" placeholder="Informe seu bairro" />
 
 					<p:outputLabel for="cidade" value="Cidade:" />
 					<p:inputText id="cidade"
-						value="#{cadastroPessoaBean.endereco.cidade}" size="25"
+						value="#{listPessoaBean.pessoaAlterar.endereco.cidade}" size="25"
 						styleClass="largura" placeholder="Informe sua cidade" />
 
 
 					<p:outputLabel for="uf" value="UF:" />
-					<p:selectOneMenu id="uf" value="#{cadastroPessoaBean.endereco.uf}">
+					<p:selectOneMenu id="uf" value="#{listPessoaBean.pessoaAlterar.endereco.uf}">
 						<f:selectItem itemLabel="---Selecione um Estado---"
 							noSelectionOption="true" />
-						<f:selectItems value="#{cadastroPessoaBean.ufs}" />
+						<f:selectItems value="#{listPessoaBean.ufs}" />
 					</p:selectOneMenu>
 
 					<p:outputLabel for="logradouro" value="Logradouro:" />
 					<p:inputText id="logradouro"
-						value="#{cadastroPessoaBean.endereco.logradouro}" size="40"
+						value="#{listPessoaBean.pessoaAlterar.endereco.logradouro}" size="40"
 						placeholder="Rua,Avenida" styleClass="largura" />
 
 					<p:outputLabel for="cep" value="CEP:" />
-					<p:inputText id="cep" value="#{cadastroPessoaBean.endereco.cep}"
+					<p:inputText id="cep" value="#{listPessoaBean.pessoaAlterar.endereco.cep}"
 						size="10" placeholder="CEP" styleClass="largura" />
 
 					<p:outputLabel for="numero" value="Número:" />
 					<p:inputText id="numero"
-						value="#{cadastroPessoaBean.endereco.numero}" size="8"
+						value="#{listPessoaBean.pessoaAlterar.endereco.numero}" size="8"
 						styleClass="largura" />
 
 				</h:panelGrid>
 
 			</p:fieldset>
+			
+
+		
 
 			<br />
 
 
 			<br />
 			<p:commandButton value="Salvar" id="salvar"
-				actionListener="#{cadastroPessoaBean.salvar()}" update="@form" />
-			<p:commandButton value="Limpar" type="reset" />
+				actionListener="#{listPessoaBean.update()}" update="@form" />
+		
 
 		</p:panel>
 

@@ -30,6 +30,20 @@ public class PessoaRepository extends BasicRepository<Pessoa> implements
 
 	}
 	
+	
+	public void updatePessoa(Pessoa pessoa){
+		
+		updateEntity(pessoa);
+		
+		
+	}
+	
+	public Pessoa findPessoa(int id){
+		return entity(id);
+		
+		
+	}
+	
 	public List<Pessoa>listPessoa(){
 		
 		return listEntity();

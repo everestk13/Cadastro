@@ -29,6 +29,22 @@ public class PessoaService implements Serializable {
 		
 	}
 	
+	public void updatePessoaService(Pessoa pessoa){
+		
+		repository.updatePessoa(pessoa);
+		
+	}
+	
+	public Pessoa findPessoaService(int id){
+		return repository.findPessoa(id);
+		
+		
+		
+	}
+		
+		
+		
+	
 	
 
 	public Pessoa validarPessoaService(Pessoa pessoaParam) {
