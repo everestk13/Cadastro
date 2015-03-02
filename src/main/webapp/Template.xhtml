@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="sistema.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Meu Sistema</title>
+	<style type="text/css">
+body {
+	background-color: #eeeeee;
+	font-size: 12px
+}
+</style>
+</h:head>
+<h:body>
+	<header>
+	<div>
+	<p:menubar>
+         <p:submenu label="File" icon="ui-icon-document">
+            <p:submenu label="New" icon="ui-icon-contact">
+                <p:menuitem value="Project" url="#" />
+                <p:menuitem value="Other" url="#" />
+            </p:submenu>
+            <p:menuitem value="Open" url="#" />
+            <p:separator />
+            <p:menuitem value="Quit" url="#" />
+        </p:submenu>
+ 
+        <p:submenu label="Edit" icon="ui-icon-pencil">
+            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+        </p:submenu>
+ 
+    </p:menubar>
+	</div>
+	
+		<div style="clear: both"></div>
+	</header>
+
+	<ui:insert name="centro">
+                        O que estiver aqui será substituido!
+                    </ui:insert>
+
+
+</h:body>
+</html>

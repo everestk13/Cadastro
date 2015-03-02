@@ -35,6 +35,36 @@
 		};
 
 	</script>
+	
+	<script >
+	//jQuery(document).ready(function(jQuery) { 
+	jQuery(document).keypress(function(jQuery) {  
+        // Chamada da funcao upperText(); ao carregar a pagina  
+        upperText();  
+    });  
+    // Funcao que faz o texto ficar em uppercase  
+    function upperText() {  
+        // Para tratar o colar  
+        jQuery(".largura").bind('paste', function(e) {  
+            var el = jQuery(this);  
+            setTimeout(function() {  
+                var text = jQuery(el).val();  
+                el.val(text.toUpperCase());  
+            }, 100);  
+        });  
+  
+        // Para tratar quando é digitado  
+        jQuery(".largura").keypress(function() {  
+            var el = jQuery(this);  
+            setTimeout(function() {  
+                var text = jQuery(el).val();  
+                el.val(text.toUpperCase());  
+            }, 100);  
+        });  
+    }  
+
+
+	</script>
 
 	<h:outputStylesheet library="css" name="sistema.css" />
 
@@ -43,12 +73,12 @@
 <h:body>
 	<h:form id="form">
 
-		<p:panel id="panel" header="Cadastro de Contribuintes" footer="Sistema de Controle e Cadastro Contribuintes.">
+		<p:panel id="panel" header="Cadastro de Contribuintes" footer="Sistema de Controle e Cadastro Contribuintes."  >
 			<p:messages id="msgs" autoUpdate="true" closable="true" />
 			<p:focus context="panel" />
 
 			<p:fieldset>
-				<h:panelGrid columns="2" cellpadding="2" style="width:100%"
+				<h:panelGrid columns="2" cellpadding="2" style="width:100%" 
 					columnClasses="rotulo,campo">
 
 					<p:outputLabel for="nome" value="Nome:" />
@@ -58,7 +88,7 @@
 
 					<p:outputLabel for="cpf" value="CPF:" />
 					<p:inputMask id="cpf" mask="999.999.999-99" size="14"
-						value="#{cadastroPessoaBean.pessoa.cpf}" styleClass="largura"
+						value="#{cadastroPessoaBean.pessoa.cpf}" 
 						converter="convertMask" placeholder="Informe seu CPF">
 						<p:ajax event="blur" listener="#{cadastroPessoaBean.validarCpf()}"
 							process="@this" />
@@ -71,10 +101,10 @@
 					<p:inputMask id="fone" mask="(99)9999-9999" size="14"
 						converter="convertMask"
 						value="#{cadastroPessoaBean.pessoa.telefone}"
-						placeholder="Contato" styleClass="largura" />
+						placeholder="Contato"  />
 
 					<p:outputLabel for="email" value="Email:" />
-					<p:inputText id="email" size="30" styleClass="largura"
+					<p:inputText id="email" size="40" styleClass="largura"
 						value="#{cadastroPessoaBean.pessoa.email}"
 						placeholder="Informe seu Email">
 						<p:ajax event="blur"
@@ -155,10 +185,15 @@
 
 
 			<br />
-			<p:commandButton value="Salvar" id="salvar"
+			
+			
+			<p:commandButton value="Salvar" id="salvar" 
 				actionListener="#{cadastroPessoaBean.salvar()}" update="@form" />
-			<p:commandButton value="Limpar" type="reset" />
-
+			<p:commandButton value="Limpar" type="reset"  />
+			
+			
+		
+		
 		</p:panel>
 
 	</h:form>

@@ -22,7 +22,16 @@ border: none !important;
 
 .rotulo{
 	
-width: 20%;	
+width: 15%;	
 	
 	
 }
+.ui-button{
+
+margin-left: 20px !important;
+border-left: 0px !important;
+
+	
+}
+
+
